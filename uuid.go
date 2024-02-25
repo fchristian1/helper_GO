@@ -9,3 +9,9 @@ func UUID_NewString() string {
 func UUID_NameNewString(name string) string {
 	return name + "_" + uuid.New().String()
 }
+
+//UUID validation
+func UUID_Validate(uuidString string) bool {
+	_, err := uuid.Parse(uuidString)
+	return err == nil
+}
