@@ -2,7 +2,7 @@ package helper_GO
 
 import "github.com/google/uuid"
 
-func UUID_NewAsString() string {
+func UUID_NewString() string {
 	return uuid.New().String()
 }
 

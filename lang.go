@@ -11,7 +11,10 @@ type LangFile struct {
 
 func InitLang() LangFile {
 	//read ./lang.json file
-	b := FILE_LoadFileAsByte("./lang.json")
+	b, err := FILE_LoadFileAsByte("./lang.json")
+	if err != nil {
+		panic(err)
+	}
 
 	//unmarshal to langJson
 	l := JSON_UnmarshalToInterface[[]LangFile](b)

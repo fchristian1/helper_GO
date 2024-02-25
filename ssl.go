@@ -39,9 +39,9 @@ func InitTLS(sslPath, sslCert, sslKey string, logLevel string) {
 		if err != nil {
 			LogError(logLevel, "Failed to write TLS key file:", err)
 		}
-		LogInfo(logLevel, "TLS files are generated in: ")
+		LogInfo(logLevel, "TLS files are generated")
 	}
-	LogInfo(logLevel, "TLS files are found in: ")
+	LogInfo(logLevel, "TLS files are found")
 }
 
 // generation of a crt and a key file for TLS with given data

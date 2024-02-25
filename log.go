@@ -7,39 +7,49 @@ import (
 	"time"
 )
 
-func LogInfo(logLevel string, message ...any) {
+func LogInfo(logLevel string, message ...any) bool {
 	if logLevel == "info" || logLevel == "warning" || logLevel == "error" || logLevel == "debug" {
-		m := "Info: " + fmt.Sprintln(message...)
-		log.Print(m)
-		saveLog("LogInfo.txt", m)
+		m := LogPrint("Info", message...)
+		SaveLog("LogInfo.txt", m)
+		return true
 	}
+	return false
 }
 
-func LogWarning(logLevel string, message ...any) {
+func LogWarning(logLevel string, message ...any) bool {
 	if logLevel == "warning" || logLevel == "error" || logLevel == "debug" {
-		m := "Warning: " + fmt.Sprintln(message...)
-		log.Print(m)
-		saveLog("LogWarning.txt", m)
+		m := LogPrint("Warning", message...)
+		SaveLog("LogWarning.txt", m)
+		return true
 	}
+	return false
 }
 
-func LogError(logLevel string, message ...any) {
+func LogError(logLevel string, message ...any) bool {
 	if logLevel == "error" || logLevel == "debug" {
-		m := "Error: " + fmt.Sprintln(message...)
-		log.Print(m)
-		saveLog("LogError.txt", m)
+		m := LogPrint("Error", message...)
+		SaveLog("LogError.txt", m)
+		return true
 	}
+	return false
 }
 
-func LogDebug(logLevel string, message ...any) {
+func LogDebug(logLevel string, message ...any) bool {
 	if logLevel == "debug" {
-		m := "Debug: " + fmt.Sprintln(message...)
-		log.Print(m)
-		saveLog("LogDebug.txt", m)
+		m := LogPrint("Debug", message...)
+		SaveLog("LogDebug.txt", m)
+		return true
 	}
+	return false
 }
 
-func saveLog(filename string, message string) {
+func LogPrint(name string, message ...any) string {
+	m := name + ": " + fmt.Sprintln(message...)
+	log.Print(m)
+	return m
+}
+
+func SaveLog(filename string, message string) {
 	//open logfile and append message in a new Line
 	file, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
