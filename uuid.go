@@ -12,6 +12,6 @@ func UUID_NameNewString(name string) string {
 
 //UUID validation
 func UUID_Validate(uuidString string) bool {
-	_, err := uuid.Parse(uuidString)
+	err := uuid.Validate(uuidString)
 	return err == nil
 }
